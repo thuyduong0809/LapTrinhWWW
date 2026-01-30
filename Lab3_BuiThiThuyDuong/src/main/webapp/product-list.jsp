@@ -2,26 +2,49 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
-<body>
-<h2>Danh sách sản phẩm</h2>
-<a href="new">➕ Thêm</a>
+<head>
+    <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-<table border="1">
-    <tr>
-        <th>ID</th><th>Tên</th><th>Giá</th><th>Ảnh</th><th>Hành động</th>
-    </tr>
-    <c:forEach var="p" items="${list}">
+<body>
+
+<div class="header">
+    🛒 Quản lý sản phẩm
+</div>
+
+<div class="container">
+    <a href="new" class="btn btn-add">➕ Thêm sản phẩm</a>
+
+    <table>
         <tr>
-            <td>${p.id}</td>
-            <td>${p.name}</td>
-            <td>${p.price}</td>
-            <td><img src="${p.urlImage}" width="100"/></td>
-            <td>
-                <a href="edit?id=${p.id}">Sửa</a>
-                <a href="delete?id=${p.id}">Xóa</a>
-            </td>
+            <th>ID</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Hình ảnh</th>
+            <th>Hành động</th>
         </tr>
-    </c:forEach>
-</table>
+
+        <c:forEach var="p" items="${list}">
+            <tr>
+                <td>${p.id}</td>
+                <td>${p.name}</td>
+                <td>${p.price} ₫</td>
+                <td>
+                    <img src="${p.urlImage}" width="90">
+                </td>
+                <td>
+                    <a href="edit?id=${p.id}" class="btn btn-edit">Sửa</a>
+                    <a href="delete?id=${p.id}"
+                       class="btn btn-delete"
+                       onclick="return confirm('Xóa sản phẩm này?')">
+                        Xóa
+                    </a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
+
 </body>
 </html>
