@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Students</title>
+</head>
+<body>
+
+<h2>Danh sách sinh viên</h2>
+
+<a href="/students/add">Thêm sinh viên</a>
+
+<form action="/students" method="get">
+    <input name="id" placeholder="Nhập ID">
+    <button>Tìm</button>
+</form>
+<p th:if="${#lists.isEmpty(students)}">Không tìm thấy sinh viên</p>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+    </tr>
+
+    <tr th:each="s : ${students}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.email}"></td>
+        <td th:text="${s.age}"></td>
+        <td>
+            <a th:href="@{'/students/' + ${s.id}}">View</a>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
